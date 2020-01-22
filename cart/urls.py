@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.utils.translation import gettext_lazy as _
 from . import views
 
+app_name = 'cart'
 
 urlpatterns = [
     url(r'^$', views.cart_detail, name='cart_detail'),
