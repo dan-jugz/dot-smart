@@ -3,3 +3,4 @@ ven/
 migrations/
 db.sqlite3
 .env
+*.pyc
