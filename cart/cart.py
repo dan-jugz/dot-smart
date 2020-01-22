@@ -20,6 +20,13 @@ class Cart(object):
         self.coupon_id = self.session.get('coupon_id')
 
 
+    def __len__(self):
+        """
+        Count all items in the cart.
+        """
+        return sum(item['quantity'] for item in self.cart.values())
+
+
     def __iter__(self):
         """
         Iterate over the items in the cart and get the products from the database.
