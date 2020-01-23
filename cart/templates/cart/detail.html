@@ -30,14 +30,14 @@
                 </td>
                 <td>{{ product.name }}</td>
                 <td>
-                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
                         {{ item.update_quantity_form.quantity }}
                         {{ item.update_quantity_form.update }}
-                        <input type="submit" value="{% trans "Update" %}">
+                        <input type="submit" value="{% trans 'Update' %}">
                         {% csrf_token %}
                     </form>
                 </td>
-                <td><a href="{% url "cart:cart_remove" product.id %}">{% trans "Remove" %}</a></td>
+                <td><a href="{% url 'cart:cart_remove' product.id %}">{% trans "Remove" %}</a></td>
                 <td class="num">${{ item.price }}</td>
                 <td class="num">${{ item.total_price }}</td>
             </tr>
@@ -51,8 +51,7 @@
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url "shop:product_list" %}" class="button
-        light">Continue shopping</a>
-        <a href="#" class="button">Checkout</a>
+        <a href="{% url 'shop:product_list' %}" class="buttonlight">Continue shopping</a>
+        <a href="{% url 'orders:order_create' %}" class="button">Checkout</a>
     </p>
 {% endblock %}
