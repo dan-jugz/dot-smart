@@ -1,28 +1,18 @@
 {% load static %}
+{% load bootstrap3 %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>{% block title %}My shop{% endblock %}</title>
-    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <title>{% block title %}My shop{% endblock %}</title>  
+    {% block styles %}
+        {% bootstrap_css%}
+         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock styles %}
 </head>
 <body>
-    <div id="header">
-        <a href="/" class="logo">My shop</a>
-        <div class="cart">
-         {% with total_items=cart|length %}
-          {% if cart|length > 0 %}
-            Your cart:
-            <a href="{% url "cart:cart_detail" %}">
-                {{ total_items }} item{{ total_items|pluralize }},
-                ${{ cart.get_total_price }}
-            </a>
-          {% else %}
-            Your cart is empty.
-          {% endif %}
-         {% endwith %}
-        </div>
-    </div>
+    {% include "shop/navbar.html" %}
     
     <div id="content">
         {% block content %}
@@ -30,4 +20,8 @@
         {% endblock %}
     </div>
 </body>
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %}
+{% endblock scripts %}
 </html>
